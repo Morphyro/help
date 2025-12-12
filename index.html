@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Apresentação - Bioconversão de Biomassa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .slide:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+
+        .slide-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .slide h2 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+        }
+
+        .slide ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .slide li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .slide li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .slide p {
+            margin-bottom: 20px;
+            font-size: 1.05em;
+            color: #555;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .slide .topic-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            background: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 7px 20px rgba(0,0,0,0.3);
+        }
+
+        .current-slide-indicator {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-weight: bold;
+            color: #667eea;
+            z-index: 999;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .slide h2 {
+                font-size: 1.5em;
+            }
+
+            .slide li {
+                font-size: 1em;
+            }
+
+            .nav-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .current-slide-indicator {
+                top: 10px;
+                right: 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .progress-bar,
+            .nav-buttons,
+            .current-slide-indicator {
+                display: none;
+            }
+
+            .slide {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="current-slide-indicator" id="slideIndicator">Slide 1/10</div>
+
+    <div class="container">
+        <header>
+            <h1>Guia para Apresentação</h1>
+            <p class="subtitle">Bioconversão de Biomassa com Clostridium acetobutylicum</p>
+        </header>
+
+        <div class="slide" data-slide="1">
+            <span class="slide-number">SLIDE 1</span>
+            <h2>Desafios energéticos</h2>
+            
+            <p class="topic-title">Dependência de Combustíveis Fósseis</p>
+            <p>A matriz energética global ainda está fortemente baseada em recursos não renováveis, como petróleo, carvão e gás natural. Esses combustíveis fósseis representam uma fonte finita de energia e sua extração, processamento e combustão geram impactos ambientais significativos, incluindo a degradação de ecossistemas, poluição atmosférica e contaminação de recursos hídricos. A dependência contínua dessas fontes coloca em risco a segurança energética das nações e acelera as mudanças climáticas.</p>
+            
+            <p class="topic-title">Crescimento da Demanda Mundial de Energia</p>
+            <p>O aumento populacional, aliado à rápida industrialização de países em desenvolvimento e à expansão das economias emergentes, tem impulsionado um crescimento exponencial no consumo de energia. Estima-se que a demanda energética global continue aumentando nas próximas décadas, tornando urgente a transição para fontes mais sustentáveis. Esse crescimento acelerado pressiona os sistemas energéticos atuais e intensifica a competição por recursos limitados.</p>
+            
+            <p class="topic-title">Sustentabilidade e Redução de Emissões</p>
+            <p>As mudanças climáticas representam um dos maiores desafios da humanidade, exigindo ações coordenadas para reduzir as emissões de gases de efeito estufa. A transição para tecnologias limpas e de baixo carbono não é apenas uma necessidade ambiental, mas também uma oportunidade econômica. Desenvolver e implementar soluções sustentáveis de energia é fundamental para mitigar os impactos das mudanças climáticas, proteger a biodiversidade e garantir um futuro viável para as próximas gerações.</p>
+        </div>
+
+        <div class="slide" data-slide="2">
+            <span class="slide-number">SLIDE 2</span>
+            <h2>O Papel dos Biocombustíveis</h2>
+            
+            <p class="topic-title">Fonte Renovável de Energia</p>
+            <p>Os biocombustíveis representam uma alternativa estratégica aos combustíveis fósseis, sendo produzidos a partir de matérias-primas renováveis de origem biológica. Ao contrário dos recursos petrolíferos, que levaram milhões de anos para se formar, os biocombustíveis podem ser regenerados em ciclos relativamente curtos através do cultivo de biomassa. Essa característica renovável reduz significativamente a dependência de importações de petróleo, fortalecendo a autonomia energética dos países e contribuindo para a diversificação da matriz energética nacional e global.</p>
+            
+            <p class="topic-title">Menor Impacto Ambiental</p>
+            <p>A utilização de biocombustíveis apresenta vantagens ambientais consideráveis quando comparada aos combustíveis fósseis convencionais. Durante seu crescimento, as plantas absorvem dióxido de carbono da atmosfera através da fotossíntese, compensando parcialmente as emissões geradas durante a combustão do biocombustível. Esse ciclo de carbono mais equilibrado resulta em uma redução líquida das emissões de gases de efeito estufa, contribuindo para o combate às mudanças climáticas. Além disso, biocombustíveis de segunda e terceira geração, produzidos a partir de resíduos e materiais lignocelulósicos, apresentam balanços ambientais ainda mais favoráveis.</p>
+            
+            <p class="topic-title">Valorização da Biomassa e da Economia Local</p>
+            <p>A produção de biocombustíveis impulsiona o desenvolvimento econômico em múltiplas frentes, especialmente nas regiões agrícolas. O aproveitamento de resíduos agroindustriais e biomassa residual transforma materiais antes descartados em recursos valiosos, agregando valor às cadeias produtivas existentes. Esse processo gera empregos tanto no campo quanto na indústria, desde a produção da matéria-prima até o processamento e distribuição do produto final. Além disso, fortalece a economia circular ao fechar ciclos de produção, reduzindo desperdícios e criando novas oportunidades de negócios em comunidades rurais e centros regionais.</p>
+        </div>
+
+        <div class="slide" data-slide="3">
+            <span class="slide-number">SLIDE 3</span>
+            <h2>A Bioconversão de Biomassa em Biobutanol</h2>
+            
+            <p class="topic-title">Pré-tratamento da Biomassa</p>
+            <p>O pré-tratamento é uma etapa fundamental e desafiadora no processo de bioconversão, tendo como objetivo quebrar a complexa estrutura lignocelulósica da biomassa vegetal. Esse material é naturalmente recalcitrante devido à presença de lignina, que protege as fibras de celulose e hemicelulose. Diversos métodos podem ser empregados, incluindo tratamentos físicos (moagem, trituração), químicos (ácidos, bases, solventes orgânicos), biológicos (fungos degradadores) ou combinações desses processos. O pré-tratamento eficaz aumenta a acessibilidade dos polissacarídeos às enzimas hidrolíticas, sendo crucial para maximizar o rendimento de açúcares fermentáveis nas etapas subsequentes.</p>
+            
+            <p class="topic-title">Hidrólise Enzimática</p>
+            <p>Após o pré-tratamento, a biomassa processada passa pela hidrólise enzimática, onde complexos enzimáticos especializados atuam sobre os polissacarídeos. As celulases quebram as longas cadeias de celulose em moléculas de glicose, enquanto as hemicelulases convertem a hemicelulose em pentoses (xilose, arabinose) e hexoses (glicose, manose, galactose). Este processo é mais seletivo e ocorre em condições mais brandas comparado à hidrólise ácida, resultando em menor formação de compostos inibidores. A eficiência dessa etapa é influenciada por fatores como temperatura, pH, concentração enzimática e tempo de reação, sendo essencial para disponibilizar uma rica fonte de açúcares para a fermentação microbiana.</p>
+            
+            <p class="topic-title">Fermentação ABE com Clostridium acetobutylicum</p>
+            <p>A fermentação ABE (acetona-butanol-etanol) é realizada pela bactéria anaeróbia Clostridium acetobutylicum, um microrganismo notável por sua capacidade de converter açúcares em solventes de alto valor. O processo fermentativo ocorre em duas fases distintas: inicialmente, na fase acidogênica, a bactéria metaboliza os açúcares produzindo ácidos orgânicos (acético e butírico) e gerando energia para seu crescimento. Posteriormente, quando as condições ambientais mudam (pH ácido, limitação de nutrientes), ocorre a transição para a fase solventogênica, onde esses ácidos são reassimilados e convertidos em solventes neutros: acetona, butanol e etanol. O biobutanol é o principal produto de interesse, apresentando propriedades superiores como biocombustível devido ao seu maior conteúdo energético e melhor compatibilidade com a infraestrutura existente de combustíveis.</p>
+        </div>
+
+        <footer>
+            <p>Guia de Apresentação - Bioconversão de Biomassa | Use as setas ou role a página</p>
+        </footer>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="nav-btn" onclick="previousSlide()">↑</button>
+        <button class="nav-btn" onclick="nextSlide()">↓</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 3;
+        const slides = document.querySelectorAll('.slide');
+
+        function updateProgress() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercentage + '%';
+        }
+
+        function updateSlideIndicator() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            slides.forEach((slide, index) => {
+                const rect = slide.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    currentSlide = index + 1;
+                }
+            });
+            document.getElementById('slideIndicator').textContent = `Slide ${currentSlide}/${totalSlides}`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 1) {
+                slides[currentSlide - 2].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            updateProgress();
+            updateSlideIndicator();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }
+        });
+
+        updateSlideIndicator();
+    </script>
+</body>
+</html>
